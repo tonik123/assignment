@@ -1,0 +1,39 @@
+<div class="container-fluid" style="padding-top: 20px">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Address (City)</th>
+            <th>Phone No</th>
+            <th>Company (Name)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userInformationList">
+            <th class="font-weight">{{ user.name }}</th>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td class="custom-style" data-toggle="modal" data-target="#addressModal" title="Click to know more" (click)="modalClicked(user, 'address')">
+                {{ user.address?.city }}
+            </td>
+            <td>{{ user.phone }}</td>
+            <td class="custom-style" data-toggle="modal" data-target="#companyModal" title="Click to know more" (click)="modalClicked(user, 'company')">
+                {{ user.company?.name }}
+            </td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+</div> 
+  
+<!-- Address Modal -->
+<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="addressModal" aria-hidden="true">
+    <app-address [selectedAddress]="selectedAddressData"></app-address>
+</div>
+
+<!-- Company Modal -->
+<div class="modal fade" id="companyModal" tabindex="-1" role="dialog" aria-labelledby="companyModal" aria-hidden="true">
+    <app-company [selectedCompany]="selectedCompanyData"></app-company>
+</div>
